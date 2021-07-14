@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block container %}
 <div class="row row-cols-1 row-cols-md-1 g-4">
     <div class="col">
@@ -14,16 +14,29 @@
                 </p>
             </div>
             <div class="card-footer">
-                <a href="{% url 'blog-list' %}" class="btn btn-info btn-rounded ripple-surface">
-                    Kembali
-                </a>
-                <a href="{% url 'blog-update' blog.id %}" class="btn btn-info btn-rounded ripple-surface">
-                    Perbaharui
-                </a>
-                <a data-mdb-toggle="modal" data-mdb-target="#exampleModal"
-                    class="btn btn-info btn-rounded ripple-surface">
-                    Hapus
-                </a>
+                ​<table class="table-responsive -sm table-borderless">
+                    <tr>
+                        <td>
+                            <a href="{% url 'blog-list' %}" class="btn btn-light btn-rounded ripple-surface">
+                                Back
+                            </a>
+
+                        </td>
+                        <td>
+                            <a href="{% url 'blog-update' blog.id %}" class="btn btn-light btn-rounded ripple-surface">
+                                Update
+                            </a>
+    
+                        </td>
+                        <td>
+                            <a data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+                                class="btn btn-light btn-rounded ripple-surface">
+                                Delete
+                            </a>
+    
+                        </td>
+                    </tr>
+                </table>
 
             </div>
         </div>

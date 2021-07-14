@@ -8,7 +8,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Saung GSI Sukalarang</title>
     <!-- MDB icon -->
-    <link rel="icon" href="{% static 'img/mdb-favicon.ico' %}" type="image/x-icon" />
+    <link rel="icon" href="{% static 'ico/x-diamond-fill.svg' %}" type="image/x-icon" />
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -20,7 +21,6 @@
 </head>
 
 <body>
-
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <!-- Container wrapper -->
@@ -35,8 +35,8 @@
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                    <img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="15" alt=""
+                <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'blog-list' %}">
+                    <img src="{% static 'ico/x-diamond-fill.svg' %}" height="25" alt=""
                         loading="lazy" />
                 </a>
                 <!-- Left links -->
@@ -57,33 +57,11 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-                <!-- Icon -->
-                <a class="text-reset me-3" href="#">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-
-                <!-- Notifications -->
-                <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                    role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-bell"></i>
-                    <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                    <li>
-                        <a class="dropdown-item" href="#">Some news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Another news</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                </ul>
 
                 <!-- Avatar -->
                 <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink"
                     role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                    <img src="https://mdbootstrap.com/img/new/avatars/2.jpg" class="rounded-circle" height="25" alt=""
+                    <img src="{% static 'ico/person-circle.svg' %}" class="rounded-circle" height="25" alt=""
                         loading="lazy" />
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
