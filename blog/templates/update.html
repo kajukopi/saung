@@ -5,17 +5,38 @@
     <form method="POST">
         <!-- Security token by Django -->
         {% csrf_token %}
-        <div class="col-md-6 mb-4">
-            {{ form.title }}
-        </div>
-        <!-- Message input -->
-        <div class="form-outline mb-4">
-            {{ form.description }}
-        </div>
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4" value="Update">
-            Send
-        </button>
+        <table class="table-responsive -sm table-borderless">
+            <tr>
+                <td>
+                    Title
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.title }}
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.description }}
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <button type="submit" class="btn btn-primary btn-block mb-4" value="Update">
+                        Send
+                    </button>
+                </td>
+            </tr>
+        </table>
     </form>
 </div>
 {% endblock %}

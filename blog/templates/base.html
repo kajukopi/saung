@@ -6,10 +6,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Saung GSI Sukalarang</title>
+    <title>Kaju Kopi</title>
     <!-- MDB icon -->
     <link rel="icon" href="{% static 'ico/x-diamond-fill.svg' %}" type="image/x-icon" />
-    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -36,8 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="{% url 'blog-list' %}">
-                    <img src="{% static 'ico/x-diamond-fill.svg' %}" height="25" alt=""
-                        loading="lazy" />
+                    <img src="{% static 'ico/x-diamond-fill.svg' %}" height="25" alt="" loading="lazy" />
                 </a>
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -45,10 +43,10 @@
                         <a class="nav-link" href="{% url 'blog-list' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Team</a>
+                        <a class="nav-link" href="{% url 'blog-create' %}">Create Blog</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog-tentangkami' %}">Tentang kami</a>
+                        <a class="nav-link" href="{% url 'blog-about' %}">About</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -57,7 +55,7 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-
+                {% if user.is_authenticated %}
                 <!-- Avatar -->
                 <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink"
                     role="button" data-mdb-toggle="dropdown" aria-expanded="false">
@@ -69,12 +67,15 @@
                         <a class="dropdown-item" href="#">My profile</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="{% url 'blog-create' %}">Create Blog</a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{% url 'blog-logout' %}">Logout</a>
                     </li>
                 </ul>
+                {% else %}
+                <a class="nav-link" href="{% url 'blog-login' %}">Login</a>
+                {% endif %}
             </div>
             <!-- Right elements -->
         </div>
@@ -128,49 +129,15 @@
             </section>
             <!-- Section: Social media -->
 
-            <!-- Section: Form -->
-            <section class="">
-                <form action="">
-                    <!--Grid row-->
-                    <div class="row d-flex justify-content-center">
-                        <!--Grid column-->
-                        <div class="col-auto">
-                            <p class="pt-2">
-                                <strong>Sign up for our newsletter</strong>
-                            </p>
-                        </div>
-                        <!--Grid column-->
 
-                        <!--Grid column-->
-                        <div class="col-md-5 col-12">
-                            <!-- Email input -->
-                            <div class="form-outline form-white mb-4">
-                                <input type="email" id="form5Example2" class="form-control" />
-                                <label class="form-label" for="form5Example2">Email address</label>
-                            </div>
-                        </div>
-                        <!--Grid column-->
-
-                        <!--Grid column-->
-                        <div class="col-auto">
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-outline-light mb-4">
-                                Subscribe
-                            </button>
-                        </div>
-                        <!--Grid column-->
-                    </div>
-                    <!--Grid row-->
-                </form>
-            </section>
-            <!-- Section: Form -->
 
             <!-- Section: Text -->
             <section class="mb-4">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                    repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                    eum harum corrupti dicta, aliquam sequi voluptate quas.
+                    Kami adalah para pekerja pabrik atau yang lebih sering disebut (BURUH), yang bekerja di pabrik
+                    sepatu ADIDAS. keseharian kami sama halnya seperti anak sekolah dimana harus masuk pagi pukul 7.00
+                    dan pulang pukul 17.00. Kami sering menyebut kami ini sebagai siswa SMA 75. Masuk jam 7 pagi dan
+                    pulang jam 5 sore.
                 </p>
             </section>
             <!-- Section: Text -->

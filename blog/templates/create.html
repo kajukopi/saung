@@ -1,10 +1,39 @@
-<form method="POST" enctype="multipart/form-data">
- 
-    <!-- Security token -->
-    {% csrf_token %}
- 
-    <!-- Using the formset -->
-    {{ form.as_p }}
-     
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+{% block container %}
+<div class="col-md-6 mb-4 center">
+    <!-- Create a Form -->
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+        ​<table class="table-responsive -sm table-borderless">
+            <tr>
+                <td>
+                    Title
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.title }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Description
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.description }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit" class="btn btn-primary btn-block mb-4" value="submit">
+                        publish
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+{% endblock %}

@@ -10,7 +10,7 @@
                     {{ blog.title|upper }}
                 </h5>
                 <p class="card-text">
-                    {{ blog.description }}
+                    {{ blog.description|safe }}
                 </p>
             </div>
             <div class="card-footer">
@@ -50,19 +50,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
-                    Pesan
+                    Warning!
                 </h5>
                 <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">Apakah anda yakin akan menghapus <b>{{blog.title|title}}</b> ?</div>
+            <div class="modal-body">Are you sure want to delete <b>{{blog.title|title}}</b> ?</div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                    BATAL
+                    cancel
                 </button>
                 <form method="POST" action="{% url 'blog-delete' blog.id %}">
                     {% csrf_token %}
-                    <input type="submit" value="HAPUS" class="btn btn-primary" />
-
+                    <input type="submit" value="delete" class="btn btn-primary" />
                 </form>
             </div>
         </div>
