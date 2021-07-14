@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="row row-cols-1 row-cols-md-1 g-4">
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://mdbootstrap.com/img/new/standard/city/041.jpg" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ blog.title|upper }}
+                </h5>
+                <p class="card-text">
+                    {{ blog.description }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'blog-list' %}" class="btn btn-info btn-rounded ripple-surface">
+                    Kembali
+                </a>
+                <a href="{% url 'blog-update' blog.id %}" class="btn btn-info btn-rounded ripple-surface">
+                    Perbaharui
+                </a>
+                <a data-mdb-toggle="modal" data-mdb-target="#exampleModal"
+                    class="btn btn-info btn-rounded ripple-surface">
+                    Hapus
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Pesan
+                </h5>
+                <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">Apakah anda yakin akan menghapus <b>{{blog.title|title}}</b> ?</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                    BATAL
+                </button>
+                <form method="POST" action="{% url 'blog-delete' blog.id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="HAPUS" class="btn btn-primary" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

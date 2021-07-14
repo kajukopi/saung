@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block container %}
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for blog in blogs %}
+    <div class="col">
+        <div class="card h-100">
+
+            <div id="carouselExampleInterval" class="carousel slide" data-mdb-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-mdb-interval="2000">
+                        <img src="{% static 'img/041.jpg' %}" class="d-block w-100" alt="..." />
+                    </div>
+                    <div class="carousel-item" data-mdb-interval="2000">
+                        <img src="{% static 'img/042.jpg' %}" class="d-block w-100" alt="..." />
+                    </div>
+                    <div class="carousel-item" data-mdb-interval="2000">
+                        <img src="{% static 'img/043.jpg' %}" class="d-block w-100" alt="..." />
+                    </div>
+                </div>
+                <button class="carousel-control-prev" data-mdb-target="#carouselExampleInterval" type="button"
+                    data-mdb-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" data-mdb-target="#carouselExampleInterval" type="button"
+                    data-mdb-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ blog.title|title }}
+                </h5>
+                <p class="card-text">
+                    {{ blog.description|truncatewords_html:20 }}
+                </p>
+            </div>
+            <div class="card-footer">
+                <a href="{% url 'blog-detail' blog.id %}" class="btn btn-info btn-rounded ripple-surface">
+                    Baca selengkapnya
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<nav aria-label="Page navigation example">
+    {% if blogs.has_other_pages %}
+    <ul class="pagination justify-content-center">
+        {% if blogs.has_previous %}
+        <li><a href="?page={{ blogs.previous_page_number }}" aria-label="Previous" class="page-link">&laquo;</a></li>
+        {% else %}
+        <li aria-label="Previous" class="page-link disabled"><span>&laquo;</span></li>
+        {% endif %}
+
+        {% for i in blogs.paginator.page_range %}
+        {% if blogs.number == i %}
+        <li class="active"><span class="page-link active">{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+        <li><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+
+        {% if blogs.has_next %}
+        <li><a href="?page={{ blogs.next_page_number }}" aria-label="Previous" class="page-link">&raquo;</a></li>
+        {% else %}
+        <li aria-label="Previous" class="page-link disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</nav>
+{% endblock %}
