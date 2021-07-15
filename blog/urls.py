@@ -6,18 +6,22 @@ from .views import (Create,
                     Update,
                     List,
                     About,
-                    User_Login,
-                    User_Logout,
-                    User_Register,
+                    register_request,
+                    login_request,
+                    logout_request,
                     )
+
+
+
 urlpatterns = [
     path('create', Create, name='blog-create'),
     path('', List, name='blog-list'),
     path('about', About, name='blog-about'),
-    path('<id>', Detail, name='blog-detail'),
-    path('<id>/delete', Delete, name='blog-delete'),
-    path('<id>/update', Update, name='blog-update'),
-    path("register", User_Register, name='blog-register'),
-    path("login", User_Login, name='blog-login'),
-    path("logout", User_Logout, name='blog-logout'),
+    path('<int:pk>', Detail, name='blog-detail'),
+    path('<int:pk>/delete', Delete, name='blog-delete'),
+    path('<int:pk>/update', Update, name='blog-update'),
+    path('register', register_request , name='blog-register'),
+    path('login', login_request, name='blog-login'),
+    path('logout', logout_request, name= 'blog-logout'),
+
 ]

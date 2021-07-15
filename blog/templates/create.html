@@ -1,39 +1,57 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block container %}
-<div class="col-md-6 mb-4 center">
-    <!-- Create a Form -->
-    <form method="POST" enctype="multipart/form-data">
-        <!-- Security token by Django -->
+<div class="card p-3 w-100">
+    <form method="POST">
         {% csrf_token %}
-        ​<table class="table-responsive -sm table-borderless">
-            <tr>
-                <td>
-                    Title
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form.title }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Description
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form.description }}
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="btn btn-primary btn-block mb-4" value="submit">
-                        publish
-                    </button>
-                </td>
-            </tr>
-        </table>
+        <!-- Name input -->
+        <div class="form-outline mb-4">
+            <input type="{{ form.title.widget.input_type }}" name="{{ form.title.name }}" id="id_{{ form.title.name }}"
+                class="form-control" autocomplete="off" style="
+              background-repeat: no-repeat;
+              background-attachment: scroll;
+              background-size: 16px 18px;
+              background-position: 98% 50%;
+            ">
+            <label class="form-label" for="id_{{ form.title.name }}"
+                style="margin-left: 0px">{{ form.title.label }}</label>
+            <div class="form-notch">
+                <div class="form-notch-leading" style="width: 10px"></div>
+                <div class="form-notch-middle" style="width: 255px"></div>
+                <div class="form-notch-trailing"></div>
+            </div>
+            <div class="form-notch">
+                <div class="form-notch-leading" style="width: 10px;"></div>
+                <div class="form-notch-middle" style="width: 255px;"></div>
+                <div class="form-notch-trailing"></div>
+            </div>
+        </div>
+
+        <!-- Message input -->
+        <div class="form-outline mb-4">
+            <textarea class="form-control" name="{{ form.description.name }}" id="id_{{ form.description.name }}"
+                value="{{ form.description.value }}" rows="8"></textarea>
+            <label class="form-label" for="id_{{ form.description.name }}"
+                style="margin-left: 0px">{{ form.description.label }}</label>
+            <div class="form-notch">
+                <div class="form-notch-leading" style="width: 10px"></div>
+                <div class="form-notch-middle" style="width: 255px"></div>
+                <div class="form-notch-trailing"></div>
+            </div>
+            <div class="form-notch">
+                <div class="form-notch-leading" style="width: 10px;"></div>
+                <div class="form-notch-middle" style="width: 255px;"></div>
+                <div class="form-notch-trailing"></div>
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-light btn-rounded btn-block mb-4">
+            Publish
+        </button>
+        <a class="btn btn-light btn-rounded btn-block mb-4" href="{% url 'blog-list' %}">
+            Cancel
+        </a>
     </form>
 </div>
 {% endblock %}

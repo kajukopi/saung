@@ -1,16 +1,44 @@
 {% extends "base.html" %}
 
-{% block container %}      
+{% block container %}
+{% if user.is_active %}
+{% include '404.html' %}
+{% else %}
 
-<!--Login--> 
-<div class="container py-5">
-  <h1>Login</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ login_form.as_p }}
-    <button class="btn btn-primary" type="submit">Login</button>
-  </form>
-  <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
-</div>
+<!--Login-->
+<div class="card p-3 w-100">
+    <form method="POST">
+      {% csrf_token %}
+      {% for field in login_form %}
+      <!-- Name input -->
+      <div class="form-outline mb-4">
+        <input type="{{ field.field.widget.input_type }}" name="{{ field.name }}" id="id_{{ field.name }}" class="form-control" autocomplete="off"
+          style="
+              background-repeat: no-repeat;
+              background-attachment: scroll;
+              background-size: 16px 18px;
+              background-position: 98% 50%;
+            ">
+        <label class="form-label" for="id_{{ field.name }}" style="margin-left: 0px">{{ field.label }}</label>
+        <div class="form-notch">
+          <div class="form-notch-leading" style="width: 10px"></div>
+          <div class="form-notch-middle" style="width: 255px"></div>
+          <div class="form-notch-trailing"></div>
+        </div>
+        <div class="form-notch">
+          <div class="form-notch-leading" style="width: 10px;"></div>
+          <div class="form-notch-middle" style="width: 255px;"></div>
+          <div class="form-notch-trailing"></div>
+        </div>
+      </div>
+      {% endfor %}
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-light btn-rounded btn-block mb-4">
+        Login
+      </button>
+    </form>
+    <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+  </div>
+{% endif %}
 
 {% endblock %}

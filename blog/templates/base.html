@@ -6,8 +6,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link rel="shortcut icon" href="#">
     <title>Kaju Kopi</title>
     <!-- MDB icon -->
+    {% block stylesheet %}{% endblock %}
     <link rel="icon" href="{% static 'ico/x-diamond-fill.svg' %}" type="image/x-icon" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" />
@@ -43,9 +45,6 @@
                         <a class="nav-link" href="{% url 'blog-list' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'blog-create' %}">Create Blog</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'blog-about' %}">About</a>
                     </li>
                 </ul>
@@ -56,25 +55,35 @@
             <!-- Right elements -->
             <div class="d-flex align-items-center">
                 {% if user.is_authenticated %}
+
                 <!-- Avatar -->
                 <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuLink"
                     role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                     <img src="{% static 'ico/person-circle.svg' %}" class="rounded-circle" height="25" alt=""
                         loading="lazy" />
+
                 </a>
+
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                     <li>
-                        <a class="dropdown-item" href="#">My profile</a>
+                        <a class="dropdown-item" href="#">Hi {{user.first_name|title}} {{user.last_name|title}}</a>
                     </li>
+                    {% if user.is_superuser %}
                     <li>
                         <a class="dropdown-item" href="{% url 'blog-create' %}">Create Blog</a>
                     </li>
+                    {% else %}
+                    {% endif %}
                     <li>
                         <a class="dropdown-item" href="{% url 'blog-logout' %}">Logout</a>
                     </li>
                 </ul>
                 {% else %}
-                <a class="nav-link" href="{% url 'blog-login' %}">Login</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'blog-login' %}">Login</a>
+                    </li>
+                </ul>
                 {% endif %}
             </div>
             <!-- Right elements -->
@@ -82,15 +91,37 @@
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
+<br>
+    <div class="container justify-content-center">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="toast fade show bg-{{ message.tags }} text-white" role="alert" aria-live="assertive"
+            aria-atomic="true">
+            <div class="toast-header bg-{{ message.tags }} text-white">
+                <i class="fas fa-exclamation-circle fa-lg me-2"></i>
+                <strong class="me-auto">Kaju Kopi</strong>
+                <small>{{user.username}}</small>
+                <button type="button" class="btn-close btn-close-white" data-mdb-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message|safe }}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+
+
 
     <br>
     <!-- Start your project here-->
-    <div class="container">
+    <div class="container justify-content-center">
         {% block container %}
 
         {% endblock %}
     </div>
-    <div class="container">
+    <div class="container justify-content-center">
         {% block modal %}
 
         {% endblock %}
@@ -156,9 +187,8 @@
     <!-- MDB -->
     <script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
 
-    {% block script %}
-
-    {% endblock %}
+    {% block javascript %}{% endblock %}
+    <!-- Add this empty block here! -->
 
     <script type="text/javascript"></script>
 </body>

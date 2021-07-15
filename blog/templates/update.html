@@ -1,42 +1,58 @@
 {% extends 'base.html' %}
 {% block container %}
-<div class="col-md-6 mb-4 center">
-    <!-- Create a Form -->
-    <form method="POST">
-        <!-- Security token by Django -->
-        {% csrf_token %}
-        <table class="table-responsive -sm table-borderless">
-            <tr>
-                <td>
-                    Title
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form.title }}
+<div class="card p-3 w-100">
+        <form method="POST">
+            {% csrf_token %}
+            <!-- Name input -->
+            <div class="form-outline mb-4">
+                <input type="{{ form.title.widget.input_type }}" name="{{ form.title.name }}" id="id_{{ form.title.name }}" value="{{ form.title.value }}"
+                    class="form-control" autocomplete="off" style="
+                  background-repeat: no-repeat;
+                  background-attachment: scroll;
+                  background-size: 16px 18px;
+                  background-position: 98% 50%;
+                ">
+                <label class="form-label" for="id_{{ form.title.name }}"
+                    style="margin-left: 0px">{{ form.title.label }}</label>
+                <div class="form-notch">
+                    <div class="form-notch-leading" style="width: 10px"></div>
+                    <div class="form-notch-middle" style="width: 255px"></div>
+                    <div class="form-notch-trailing"></div>
+                </div>
+                <div class="form-notch">
+                    <div class="form-notch-leading" style="width: 10px;"></div>
+                    <div class="form-notch-middle" style="width: 255px;"></div>
+                    <div class="form-notch-trailing"></div>
+                </div>
+            </div>
+    
+            <!-- Message input -->
+            <div class="form-outline mb-4">
+                <textarea class="form-control" name="{{ form.description.name }}" id="id_{{ form.description.name }}" 
+                    value="{{ form.description.value }}" rows="8">"{{ form.description.value }}"</textarea>
+                <label class="form-label" for="id_{{ form.description.name }}"
+                    style="margin-left: 0px">{{ form.description.label }}</label>
+                <div class="form-notch">
+                    <div class="form-notch-leading" style="width: 10px"></div>
+                    <div class="form-notch-middle" style="width: 255px"></div>
+                    <div class="form-notch-trailing"></div>
+                </div>
+                <div class="form-notch">
+                    <div class="form-notch-leading" style="width: 10px;"></div>
+                    <div class="form-notch-middle" style="width: 255px;"></div>
+                    <div class="form-notch-trailing"></div>
+                </div>
+            </div>
+    
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-light btn-block mb-4">
+                Publish
+            </button>
+            <a class="btn btn-light btn-block mb-4" href="{% url 'blog-detail' blog.id %}">
+                    Cancel 
+                </a>
+        </form>
+    </div>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Description
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    {{ form.description }}
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-
-                    <button type="submit" class="btn btn-primary btn-block mb-4" value="Update">
-                        Send
-                    </button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
 {% endblock %}
